@@ -53,23 +53,27 @@ class Program
     {
         Console.WriteLine("Введите число для перевода в фибоначчиевскую систему: ");
 
-        while (Console.ReadKey().Key != ConsoleKey.Q)
+        string input = Console.ReadLine();
+
+        var num = Convert.ToUInt32(input);
+
+        string outputRepresentation = Output(num);
+        Console.WriteLine(string.Format(" {0} : {1}", input, outputRepresentation));
+        Console.WriteLine("\nПеревести в десятичное?  y/n");
+
+        if(Console.ReadKey().Key == ConsoleKey.Y)
         {
-            
-            var input = Console.ReadLine();
-
-            var num = Convert.ToUInt32(input);
-            string outputRepresentation = Output(num);
-            Console.WriteLine(string.Format(" {0} : {1}", input, outputRepresentation));
-            Console.WriteLine("\nПеревести в десятичное?  y/n");
-
-            if(Console.ReadKey().Key == ConsoleKey.Y)
-            {
                 string bin = outputRepresentation;
                 int dec = Convert.ToInt32(bin, 2);
                 Console.WriteLine(string.Format("\n {0} : {1}", bin, dec));
-            }
         }
-        
+       
+        if (Console.ReadKey().Key == ConsoleKey.N)
+        {
+            Environment.Exit(0);
+        }
+
+        Console.ReadKey();
     }
+
 }
